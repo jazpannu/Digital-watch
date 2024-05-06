@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grand Opening of GSSS Khinyasriya's Website</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .container {
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 3rem;
+    margin-bottom: 30px;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+  }
+
+  #revealButton {
+    font-size: 1.5rem;
+    padding: 15px 30px;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    outline: none;
+    border-radius: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  #revealButton:hover {
+    background-color: #45a049;
+  }
+
+  #curtains {
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    z-index: 1;
+    animation: closeCurtains 2s forwards;
+  }
+
+  #curtainLeft, #curtainRight {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    background-color: #fff;
+    z-index: 2;
+  }
+
+  #curtainLeft {
+    left: 0;
+    animation: slideLeft 2s forwards;
+  }
+
+  #curtainRight {
+    right: 0;
+    animation: slideRight 2s forwards;
+  }
+
+  @keyframes slideLeft {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-100%);
+    }
+  }
+
+  @keyframes slideRight {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(100%);
+    }
+  }
+
+  @keyframes closeCurtains {
+    50% {
+      transform: scaleX(0);
+    }
+    100% {
+      display: none;
+    }
+  }
+
+  #countdown {
+    font-size: 10rem;
+    color: #333;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+</style>
+</head>
+<body>
+
+<div class="container" id="openingContent">
+  <h1>Grand opening of GSSS Khinyasriya's Website</h1>
+  <button id="revealButton">Reveal</button>
+  <div id="curtains">
+    <div id="curtainLeft"></div>
+    <div id="curtainRight"></div>
+  </div>
+</div>
+
+<script>
+document.getElementById('revealButton').addEventListener('click', function() {
+  document.getElementById('curtains').style.display = 'block';
+  setTimeout(function() {
+    document.getElementById('curtains').style.display = 'none';
+    var openingContent = document.getElementById('openingContent');
+    openingContent.parentNode.removeChild(openingContent);
+    startCountdown();
+  }, 2000); // Adjust timing as needed
+});
+
+function startCountdown() {
+  var countdownElement = document.createElement('div');
+  countdownElement.id = 'countdown';
+  document.body.appendChild(countdownElement);
+  var count = 10;
+  countdownElement.textContent = count;
+  var countdownInterval = setInterval(function() {
+    count--;
+    countdownElement.textContent = count;
+    if (count <= 0) {
+      clearInterval(countdownInterval);
+      window.location.href = 'http://www.gssskhinyasariya.org';
+    }
+  }, 1000);
+}
+</script>
+
+</body>
+</html>
